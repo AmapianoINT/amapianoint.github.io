@@ -3,106 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Amapiano International - Your Source for Amapiano Music Worldwide">
-    <meta name="keywords" content="Amapiano, Music, International, DJ, Beats">
-    <title>AmapianoINT - Amapiano International</title>
+    <title>Amapiano Music Downloader Lodwick Masete</title>
+   <style type="text/css">
+   
+   </style> 
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f0f0f0;
-        }
-        header {
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #333;
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        .main-content {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-        }
-        .main-content h2 {
-            color: #333;
-        }
-        .about, .music, .contact {
-            margin-bottom: 20px;
-        }
-        footer {
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #6200ea;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        border-radius: 0 0 8px 8px;
+        margin-bottom: 20px;
+       /* background: radial-gradient(circle at center, #0130b4 10%, rgba(255, 255, 255, 0)), repeating-linear-gradient(45deg, #ff8ffa, #ff8ffa 1px, #ff5cf8 2px, #ff5cf8 10px);*/
+        background-size: 200% 200%;
+        animation: animate-bg 5s linear infinite;
+
+
+    }
+    #songs-container {
+        max-width: 800px;
+        margin: 1rem;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+
+    }
+
+    .search-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    .search-container input {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        outline: none;
+    }
+    .search-container input:focus {
+        border-color: #6200ea;
+    }
+    .search-container button {
+        padding: 10px 20px;
+        background-color: #6200ea;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .search-container button:hover {
+        background-color: #3700b3;
+    }
+    .song {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .song:hover {
+        background-color: #e0e0e0;
+    }
+    .song-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        flex-grow: 1;
+    }
+    .song-cover {
+        max-width: 100px;
+        max-height: 100px;
+        margin-right: 20px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+    .download-button {
+        padding: 10px 15px;
+        background-color: #6200ea;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .download-button:hover {
+        background-color: #3700b3;
+    }
+    .more-button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #6200ea;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+    }
+    .more-button:hover {
+        background-color: #3700b3;
+    }
+footer {
+    position: fixed; /* Fixes the footer at the bottom */
+    left: 0; /* Aligns it to the left */
+    bottom: 0; /* Positions it at the bottom */
+    width: 100%; /* Ensures it spans the full width of the viewport */
+    text-align: center;
+    padding: 10px 0;
+    background-color: #6200ea;
+    color: white;
+    margin-top: 20px; /* This can be removed since it's fixed */
+    background-size: 200% 200%;
+    animation: animate-bg 5s linear infinite;
+}
+#padding{
+
+                padding-bottom: 200px;
+}
+
+    
     </style>
+
 </head>
 <body>
-    <header>
-        <h1>Amapiano International (AmapianoINT)</h1>
-        <p>Your Global Source for Amapiano Music</p>
+
+    <header id="header-tag">
+        <h1>Amapiano - INT</h1>
+        <p>Download your favorite Amapiano tracks easily!</p>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search for songs...">
+            <button id="search-btn">Search</button>
+            <button id="clear-btn" style="display: none;">Clear</button>
+        </div>
     </header>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#music">Music</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <div id="songs-container">
 
-    <div class="main-content" id="home">
-        <h2>Welcome to AmapianoINT</h2>
-        <p>We bring the finest Amapiano music to the world. Discover the latest hits, explore global artists, and stay connected with the international Amapiano community.</p>
+        <!-- Songs will be dynamically inserted here -->
     </div>
 
-    <div class="main-content about" id="about">
-        <h2>About AmapianoINT</h2>
-        <p>AmapianoINT is dedicated to spreading Amapiano music to audiences around the world. From South Africa to every corner of the globe, we bring the unique sound of Amapiano to your speakers.</p>
-    </div>
+    <button class="more-button" id="load-more-btn">More</button>
+    <div id="padding"></div>
 
-    <div class="main-content music" id="music">
-        <h2>Latest Music</h2>
-        <ul>
-            <li>Track 1 - "Global Vibes" by DJ Mastermind</li>
-            <li>Track 2 - "Amapiano Dreams" by DJ Sun</li>
-            <li>Track 3 - "City Lights" by DJ Moon</li>
-        </ul>
-    </div>
-
-    <div class="main-content contact" id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:info@amapianoint.com">info@amapianoint.com</a></p>
-        <p>Follow Us:</p>
-        <p>
-            <a href="https://www.instagram.com/amapianoint">Instagram</a> |
-            <a href="https://www.twitter.com/amapianoint">Twitter</a> |
-            <a href="https://www.facebook.com/amapianoint">Facebook</a>
-        </p>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 AmapianoINT. All rights reserved.</p>
+    <footer id="footer">
+        <p>&copy; 2024 Amapiano - INT.</p>
+        developed by Lodwick Masete
     </footer>
-</body>
-</html>
+
+
+
+<script>
+
+
+
+    let currentPage = 1;
+    let r =1;
+    const songsContainer = document.getElementById('songs-container');
+    const loadMoreButton = document.getElementById('load-more-btn');
+    const searchBar = document.getElementById('search-bar');
+    const searchBtn = document.getElementById('search-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    
+const headerTag = document.getElementById('header-tag');
+const footerTag = document.getElementById('footer');
+    
+    
+    let searchQuery = "";
+
+    // Function to initiate the download using JavaScript
+    function initiateDownload(url) {
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = url.split('/').pop();
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    }
+
+    // Function to fetch the audio link from each song page
+    function fetchAudioLink(songLink, songTitle, songCover) {
+
+    
+    
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', songLink, true);
+
+        xhr.onload = function() {
+        r++;
+            if (xhr.status == 200) {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(xhr.responseText, 'text/html');
+                const audioElement = doc.querySelector('figure.audio audio');
+
+                if (audioElement && audioElement.src) {
+                    const songDiv = document.createElement('div');
+                    songDiv.classList.add('song');
+
+                    const coverImg = document.createElement('img');
+                    coverImg.classList.add('song-cover');
+                    coverImg.src = songCover;
+
+                    const titleDiv = document.createElement('div');
+                    titleDiv.classList.add('song-title');
+                    titleDiv.textContent = songTitle;
+
+                    const downloadButton = document.createElement('button');
+                    downloadButton.classList.add('download-button');
+                    downloadButton.innerText = 'Download MP3';
+                    downloadButton.addEventListener('click', function() {
+                        initiateDownload(audioElement.src);
+                    });
+
+                    songDiv.appendChild(coverImg);
+                    songDiv.appendChild(titleDiv);
+                    songDiv.appendChild(downloadButton);
+                    songsContainer.appendChild(songDiv);
+                
+
+                }
+                if (r ===9){
+               removeStyles(); 
+               }
+            }
+        };
+
+        xhr.onerror = function() {
+            console.error("Request to fetch audio link failed");
+        };
+
+        xhr.send();
+    
+    
+    }
+    
+
+
+
+
+
+    // Function to fetch songs list from a page or based on a search query
+    function fetchSongs(page, query = "") {
+        let url;
+        if (query && page === 1) {
+            url = `https://www.amapiano.co/za/?s=${query}`; // Initial search without pagination
+        } else if (query && page > 1) {
+            url = `https://www.amapiano.co/za/page/${page}/?s=${query}`; // Paginated search after page 1
+        } else {
+            url = `https://www.amapiano.co/za/amapiano-house/page/${page}`; // Default song list without search
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(xhr.responseText, 'text/html');
+                const articles = doc.querySelectorAll('.pt-loop-item');
+
+                articles.forEach(function(article) {
+                    const header = article.querySelector('.entry-header a');
+                    const songTitle = header.innerText;
+                    const songLink = header.href;
+
+                    const imgElement = article.querySelector('.entry-thumbnail img');
+                    const songCover = imgElement.getAttribute('data-lazy-src') || imgElement.getAttribute('src');
+
+                    fetchAudioLink(songLink, songTitle, songCover);
+                });
+            }
+        };
+
+        xhr.onerror = function() {
+            console.error("Request to fetch songs failed");
+        };
+
+        xhr.send();
+    }
+
+
+
+    // Function to clear the search and reset to default song list
+    function clearSearch() {
+        searchBar.value = ''; // Clear the search input
+        songsContainer.innerHTML = `
+        <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search for songs...">
+        <button id="search-btn">Search</button>
+        <button id="clear-btn" style="display: none;">Clear</button>
+        </div>
+        `; // Reset songs container to show default content
+        clearBtn.style.display = 'none'; // Hide the clear button
+        searchQuery = ''; // Reset the search query
+        currentPage = 1; // Reset page number
+        fetchSongs(currentPage); // Fetch default songs
+    }
+
+    // Event listener for the 'More' button
+    loadMoreButton.addEventListener('click', function() {
+        currentPage += 1; // Increment page number
+        fetchSongs(currentPage, searchQuery); // Fetch next page of songs or search results
+    });
+
+    // Event listener for the 'Search' button
+    searchBtn.addEventListener('click', function() {
+        const query = searchBar.value.trim();
+        if (query) {
+            searchQuery = query.replace(/\s+/g, '+'); // Encode the search query
+            songsContainer.innerHTML = ''; // Clear previous results
+            currentPage = 1; // Reset page for new search
+            fetchSongs(currentPage, searchQuery); // Fetch search results for the first page
+            clearBtn.style.display = 'inline-block'; // Show the clear button
+            loadMoreButton.innerText = 'More Results'; // Change button text to "More Results"
+        }
+
+    });
+
+    // Event listener for the 'Clear' button
+    clearBtn.addEventListener('click', clearSearch);
+
+    // Initial load of the first page of songs when the page loads
+    window.onload = function() {
+        fetchSongs(currentPage); // Load default songs on page load
+    };
+    
+    
+</script>
+
+<script type="text/javascript">
+
+let styleSheet; // Global variable to hold the style sheet
+
+// Function to add styles dynamically
+function addStyles() {
+    // Check if a styleSheet already exists or create a new one
+    styleSheet = document.styleSheets[0] || document.head.appendChild(document.createElement("style")).sheet;
+
+    //  CSS rule for header
+    styleSheet.insertRule(`
+header {
+    background-color: #6200ea;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 20px;
+    background: radial-gradient(circle at center, #0130b4 10%, rgba(255, 255, 255, 0)), repeating-linear-gradient(45deg, #ff8ffa, #ff8ffa 1px, #ff5cf8 2px, #ff5cf8 10px);
+    background-size: 200% 200%;
+    animation: animate-bg 5s linear infinite;
+}
+    
+    `, styleSheet.cssRules.length);
+
+    //  CSS rule for footer
+    styleSheet.insertRule(`
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #6200ea;
+    color: white;
+    margin-top: 20px;
+        background: radial-gradient(circle at center, #0130b4 10%, rgba(255, 255, 255, 0)), repeating-linear-gradient(45deg, #ff8ffa, #ff8ffa 1px, #ff5cf8 2px, #ff5cf8 10px);
+    background-size: 200% 200%;
+    animation: animate-bg 5s linear infinite;
+}
+    `, styleSheet.cssRules.length);
+
+    // Add CSS rule for the animation
+    styleSheet.insertRule(`
+        @keyframes animate-bg {
+            0% { background-position: 200% 0%; }
+            100% { background-position: 0% 0%; }
+        }
+    `, styleSheet.cssRules.length);
+}
+
+// Function to remove specific CSS rules
+function removeStyles() {
+    if (styleSheet) {
+        // Remove the last three rules: @keyframes, footer, and header in that order
+        styleSheet.deleteRule(styleSheet.cssRules.length - 1); // Removes @keyframes
+        styleSheet.deleteRule(styleSheet.cssRules.length - 1); // Removes footer
+        styleSheet.deleteRule(styleSheet.cssRules.length - 1); // Removes header
+    }
+}
+
+// Function to remove the entire stylesheet (if dynamically created)
+function removeStylesheet() {
+    const styleElement = document.querySelector('style'); // Select the style element
+    if (styleElement) {
+        styleElement.remove(); // Removes the entire style element
+    }
+}
+
+addStyles();
+
+
+  //  removeStyles();
+</script>
+                    
+                    </body>
+                    </html>
