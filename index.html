@@ -155,7 +155,33 @@ footer {
     </header>
 
     <div id="songs-container">
+<div class="loader"></div>
 
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    background-color: #f0f0f0; /* Light background for contrast */
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey border */
+    border-top: 8px solid #3498db; /* Blue top border */
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Size of the loader */
+    height: 50px; /* Size of the loader */
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+/* Spin animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
         <!-- Songs will be dynamically inserted here -->
     </div>
 
